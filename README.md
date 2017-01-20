@@ -37,3 +37,6 @@ Swift Video Player is available under the MIT license. See the LICENSE file for 
 
 ## Sample Video
 Sample video used in this demo are not a part of this source MIT LICENCE. It is used for demo purpose only, I does not claim ownership over that video.
+=======
+# SwiftAvPlayer
+Swift 3 AVPlayer
