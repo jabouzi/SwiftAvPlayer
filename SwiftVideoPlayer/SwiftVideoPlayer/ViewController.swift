@@ -15,27 +15,27 @@ class ViewController: UIViewController, AVPlayerViewControllerDelegate {
 
     
     // url for playing video
-    var videoUrl: NSURL!
+    var videoUrl: URL!
     
     
     // action - play local video
-    @IBAction func playLocalVideo(sender: UIButton) {
+    @IBAction func playLocalVideo(_ sender: UIButton) {
         
         // create video url from local resource (i.e video stored within project folder)
-        self.videoUrl = NSBundle.mainBundle().URLForResource("sample", withExtension: "mov")!
+        self.videoUrl = Bundle.main.url(forResource: "sample", withExtension: "mov")!
         
         // perform segue
-        self.performSegueWithIdentifier("seguePlayVideo", sender: self)
+        self.performSegue(withIdentifier: "seguePlayVideo", sender: self)
     }
 
     // action - play remote video
-    @IBAction func playRemoteVideo(sender: UIButton) {
+    @IBAction func playRemoteVideo(_ sender: UIButton) {
         
         // create video url form remote location (i.e. video stored at domain etc.)
-        self.videoUrl = NSURL(string: "http://download.prashantmangukiya.com/SwiftVideoPlayer-Data/Big_Buck_Bunny_Trailer.m4v")
+        self.videoUrl = URL(string: "https://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4")
 
         // perform segue
-        self.performSegueWithIdentifier("seguePlayVideo", sender: self)
+        self.performSegue(withIdentifier: "seguePlayVideo", sender: self)
     }
     
     
@@ -58,15 +58,15 @@ class ViewController: UIViewController, AVPlayerViewControllerDelegate {
     
     // MARK: - Navigation function
 
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 
         if segue.identifier == "seguePlayVideo" {
             
             // get destination view controller
-            let destVc = segue.destinationViewController as! AVPlayerViewController
+            let destVc = segue.destination as! AVPlayerViewController
             
             // set player
-            destVc.player = AVPlayer(URL: self.videoUrl)
+            destVc.player = AVPlayer(url: self.videoUrl)
         }
         
     }
